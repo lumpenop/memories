@@ -5,15 +5,19 @@
  * @format
  */
 
-import React from 'react';
+import React, {useEffect} from 'react';
 
-import {WebView} from 'react-native-webview';
-import {View} from 'react-native';
+import {View, TextInput} from 'react-native';
 
 function App() {
+  const [text, setText] = React.useState<string>('');
+
+  useEffect(() => {
+    console.log(text.split('\n'));
+  }, [text]);
   return (
     <View style={{flex: 1}}>
-      <WebView source={{uri: 'https://naver.com/'}} style={{flex: 1}} />
+      <TextInput editable multiline onChangeText={setText} value={text} />
     </View>
   );
 }
